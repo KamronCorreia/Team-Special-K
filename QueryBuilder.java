@@ -4,11 +4,11 @@ import java.util.Map;
 
 public abstract class QueryBuilder {
 	
-	static String KEYHEADER; 
+	static String DBNAME = "FIRSTDB";
 	static String TABLENAME;
 	static int TOTALCOLUMNS;
-	static String DBNAME = "FIRSTDB";
 	
+	String KEYHEADER; 
 	String keyWanted;
 	
 	Map<String, Object> keys = new HashMap<String, Object>();
@@ -28,7 +28,7 @@ public abstract class QueryBuilder {
 	 */
 	public String dbExist() {
 		return "SHOW DATABASES LIKE '" + DBNAME + "';";
-	}
+ 	}
 	
 	/*
 	 * Creates a SQL query to check if this TABLENAME exists
