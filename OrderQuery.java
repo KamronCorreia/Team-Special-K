@@ -1,16 +1,18 @@
 
 public class OrderQuery extends QueryBuilder{
-
-	static String TABLENAME = "Orders";	
-	static int TOTALCOLUMNS = 5;
-
-	public OrderQuery(String keyWanted){
-		super(keyWanted);
-		
-		keys.put("date", null);
-		keys.put("email", null);
-		keys.put("ship_address", null);
-		keys.put("product_id", null);
-		keys.put("quantity", null);	
-	}
+    
+	public OrderQuery(){	
+        tableName = "Orders";
+		totalColumns = 5;
+        loadKeys();
+        clearKeys();
+    }
+    
+    public void loadKeys(){
+        keys.put("date", "");
+		keys.put("email", "");
+		keys.put("ship_address", "");
+		keys.put("product_id", "");
+		keys.put("quantity", 0);	
+    }
 }
