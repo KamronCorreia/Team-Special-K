@@ -107,3 +107,4 @@ assert(email_server)
 order_rows = get_rows(db, "confirmation", "0")
 
 if order_rows: send_email(db, email_server, order_rows)
+email_server.quit()
