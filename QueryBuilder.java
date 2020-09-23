@@ -23,7 +23,17 @@ public abstract class QueryBuilder {
 	 */
 	public String dbExist() {
 		return "SHOW DATABASES LIKE '" + DBNAME + "';";
- 	}
+	}
+	 
+	/*
+	 * Creates a SQL query to use this DBNAME
+	 * 
+	 * @return the SQL query
+	 */
+	public String dbUse() {
+		return "USE " + DBNAME + ";";
+	 }
+
 	
 	/*
 	 * Creates a SQL query to check if this tableName exists
@@ -134,11 +144,11 @@ public abstract class QueryBuilder {
 			if(v instanceof String){updateVals.append(" varchar(255),");}
 			else if(v instanceof Double){updateVals.append(" double(10,2),");}
 			else if(v instanceof Integer){updateVals.append(" MEDIUMINT(255),");}
+			else if(v instanceof Boolean){updateVals.append(" TINYINT(1),");}
 			else if(v == null){updateVals.append(" varchar(255),");}
 		});
 		
-		//updateVals.deleteCharAt(updateVals.length() - 1);
-		updateVals.append("PRIMARY KEY (id)");
+		updateVals.append(" PRIMARY KEY (id)");
 		updateVals.append(");");
 
 		clearKeys();

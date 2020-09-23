@@ -56,13 +56,15 @@ def change_value(connect, row_id, key_header, new_value):
 def connect_email(): 
     """returns a connection to the smtp server"""
 
-    server = smtplib.SMTP_SSL(host = "smtp.gmail.com", port = 465)
+    server = smtplib.SMTP_SSL(host = "smtp.gmail.com")
+
     for attempt in range(5):
         try:
-            server.login(EMAIL_ADDR, input("please enter password: "))
+            server.login(EMAIL_ADDR, "HERE")
             return server
-        except:
-            print("Bad Password")
+        except ValueError as e:
+            
+            print(e, " Bad Password")
     return False
 
 
@@ -96,7 +98,6 @@ def send_email(db, server, rows):
 
     return
 
-
 db = connect_db()
 assert(db)
 
@@ -106,3 +107,4 @@ assert(email_server)
 order_rows = get_rows(db, "confirmation", "0")
 
 if order_rows: send_email(db, email_server, order_rows)
+email_server.quit()
